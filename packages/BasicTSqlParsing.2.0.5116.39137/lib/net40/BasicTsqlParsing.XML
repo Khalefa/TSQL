@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BasicTsqlParsing</name>
+    </assembly>
+    <members>
+        <member name="T:BasicTsqlParsing.Token">
+            <summary>
+            The smallest unit of TSQL code containing the type and string
+            </summary>
+        </member>
+        <member name="P:BasicTsqlParsing.Token.OriginalString">
+            <summary>
+            The exact string parsed in the input
+            </summary>
+        </member>
+        <member name="P:BasicTsqlParsing.Token.TokenType">
+            <summary>
+            The type of token the string is, such as white space, a word, etc
+            </summary>
+        </member>
+        <member name="T:BasicTsqlParsing.SqlTokenReader">
+            <summary>
+            SqlTokenReader is a static class for parsing TSQL.  Call SqlTokenReader.ReadTokens(tsql) to parse your TSQL.
+            </summary>
+        </member>
+        <member name="M:BasicTsqlParsing.SqlTokenReader.ReadTokens(System.IO.TextReader)">
+            <summary>
+            Parses a TextReader containing TSQL code
+            </summary>
+        </member>
+        <member name="M:BasicTsqlParsing.SqlTokenReader.ReadTokens(System.String)">
+            <summary>
+            Parses a string containing TSQL code
+            </summary>
+        </member>
+        <member name="M:BasicTsqlParsing.SqlTokenReader.ReadTokens(System.IO.Stream,System.Text.Encoding)">
+            <summary>
+            Parses a Stream containing TSQL code. You must provide the encoding.  There are 
+            libraries you can download to detect the encoding, such as: 
+            http://www.architectshack.com/TextFileEncodingDetector.ashx
+            </summary>
+        </member>
+        <member name="T:BasicTsqlParsing.TokenTypes">
+            <summary>
+            The types of tokens parsed.
+            </summary>
+        </member>
+        <member name="F:BasicTsqlParsing.TokenTypes.StringLiteral">
+            <summary>
+            Literal strings such as "a table" (eg CREATE TABLE dbo."a table"(ID int)), 'a string', and N'a unicode string'
+            </summary>
+        </member>
+        <member name="F:BasicTsqlParsing.TokenTypes.BlockComment">
+            <summary>
+            A block comment such as /* comment */
+            </summary>
+        </member>
+        <member name="F:BasicTsqlParsing.TokenTypes.LineComment">
+            <summary>
+            A line comment such as -- comment
+            </summary>
+        </member>
+        <member name="F:BasicTsqlParsing.TokenTypes.BracketWord">
+            <summary>
+            A bracketed word, such as [a table], eg CREATE dbo.[a table](ID int);
+            </summary>
+        </member>
+        <member name="F:BasicTsqlParsing.TokenTypes.PunctuationAndSymbols">
+            <summary>
+            One or two character symbols that you think of operators, like + and separators, like (.
+            </summary>
+        </member>
+        <member name="F:BasicTsqlParsing.TokenTypes.Whitespace">
+            <summary>
+            White space like space, carriage return, tab, etc
+            </summary>
+        </member>
+        <member name="F:BasicTsqlParsing.TokenTypes.Word">
+            <summary>
+            Everything else not above.  Example words are MyTable, CREATE, @myVar, SET, @@myVar, #myTable, ##myTable, etc.
+            </summary>
+        </member>
+    </members>
+</doc>
